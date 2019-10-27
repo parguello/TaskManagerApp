@@ -21,7 +21,7 @@ export class AppComponent {
       {
         label: 'Tasks',
         icon: 'pi pi-pw pi-check',
-        command: (event) => { this.router.navigate(['/view-customer']); }
+        command: (event) => { this.router.navigate(['/view-task']); }
       },
       {
         label: 'Board',

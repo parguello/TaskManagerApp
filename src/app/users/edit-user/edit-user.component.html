@@ -1,0 +1,95 @@
+<p-messages [(value)]="msgs"></p-messages>
+<p-progressSpinner *ngIf="loading"></p-progressSpinner>
+<p-panel header={{headerTitle}} *ngIf="!loading">
+
+    <form [formGroup]="formUser" (ngSubmit)="onSubmit(formUser)" class="ui form" [class.error]="!formUser.valid && formUser.touched">
+
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <label for="firstName">First Name *</label>
+                <input id="firstName" type="text" pInputText formControlName="name">
+
+                <div class="ui-message ui-messages-error ui-corner-all" *ngIf="formUser.controls['name'].hasError('required')&&formUser.controls['name'].dirty">
+                    <i class="fa fa-close"></i>
+                    First Name is required
+                </div>
+            </div>
+
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <label for="lastName">Last Name *</label>
+                <input id="lastName" type="text" pInputText formControlName="surname">
+
+                <div class="ui-message ui-messages-error ui-corner-all" *ngIf="formUser.controls['surname'].hasError('required')&&formUser.controls['surname'].dirty">
+                    <i class="fa fa-close"></i>
+                    Last Name is required
+                </div>
+            </div>
+
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <label for="email">Email *</label>
+                <input id="email" type="text" pInputText formControlName="email">
+
+                <div class="ui-message ui-messages-error ui-corner-all" *ngIf="formUser.controls['email'].hasError('required')&&formUser.controls['email'].dirty">
+                    <i class="fa fa-close"></i>
+                    Email is required
+                </div>
+            </div>
+
+            <!--div class="ui-g-12 ui-md-6 ui-lg-4" *ngIf="formUser.get('roleType').value === 10">
+                <label for="password">Password *</label>
+                <input id="password" type="text" pInputText formControlName="password">
+
+                <div class="ui-message ui-messages-error ui-corner-all" *ngIf="formUser.controls['password'].hasError('required')&&formUser.controls['password'].dirty">
+                    <i class="fa fa-close"></i>
+                    Password is required
+                </div>
+                <div class="ui-message ui-messages-error ui-corner-all" *ngIf="formUser.controls['password'].hasError('minLength')&&formUser.controls['password'].dirty">
+                    <i class="fa fa-close"></i>
+                    Password requires minimum 8 digits
+                </div>
+            </div-->
+        </div>
+
+        <div class="ui-g ui-fluid">
+
+
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <label for="role">Role Type *</label>
+                <br>
+                <p-dropdown id="role" [options]="roles" formControlName="userType" (onChange)="onChangeRole()"></p-dropdown>
+
+                <div class="ui-message ui-messages-error ui-corner-all" *ngIf="formUser.controls['userType'].hasError('required')&&formUser.controls['userType'].dirty">
+                    <i class="fa fa-close"></i>
+                    User Type is required
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="ui-g" *ngIf="selectedUserId">
+            <div class="ui-g-12 " style="border:solid 1px white ">
+                <div class="pull-right ">
+                    <p-confirmDialog></p-confirmDialog>
+                    <p-button class="ui-button-danger " (click)="onConfirmDeletion() " icon="pi pi-times
+      " label="Delete "></p-button>
+                    <p-button *ngIf="!formUser.dirty" class="ui-button-secondary" icon="fa fa-angle-left" label="Back" (click)="onBack()"></p-button>
+                    <p-button *ngIf="formUser.dirty" class="ui-button-secondary" icon="fa fa-angle-left" label="Cancel" (click)="onCancel()"></p-button>
+                    <p-button icon="fa fa-save " label="Save" [disabled]="!formUser.valid || !formUser.dirty" (click)="onSave()"></p-button>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui-g" *ngIf="!selectedUserId">
+            <div class="ui-g-12 " style="border:solid 1px white ">
+                <div class="pull-right ">
+                    <p-button *ngIf="!formUser.dirty" class="ui-button-secondary" icon="fa fa-angle-left" label="Back" (click)="onBack()"></p-button>
+                    <p-button *ngIf="formUser.dirty" class="ui-button-secondary" icon="fa fa-angle-left" label="Cancel" (click)="onCancel()"></p-button>
+                    <p-button icon="fa fa-save " label="Save" [disabled]="!formUser.valid" (click)="onAdd()"></p-button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</p-panel>

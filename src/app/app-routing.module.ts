@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CustomerModule } from './customers/customer.module';
+import { TaskModule } from './tasks/task.module';
 import { UserModule } from './users/user.module';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'customer', pathMatch: 'full' },
+  { path: '', redirectTo: 'task', pathMatch: 'full' },
 
-  { path: 'customer', loadChildren: () => CustomerModule },
+  { path: 'task', loadChildren: () => TaskModule },
   { path: 'user', loadChildren: () => UserModule }
 ];
 

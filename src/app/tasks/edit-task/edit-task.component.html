@@ -1,0 +1,116 @@
+<p-messages [(value)]="msgs"></p-messages>
+<p-progressSpinner *ngIf="loading"></p-progressSpinner>
+<p-panel header={{headerTitle}} *ngIf="!loading">
+
+    <form [formGroup]=" formTask " (ngSubmit)="onSubmit(formTask) " class="ui form " [class.error]="!formTask.valid
+    && formTask.touched ">
+
+        <div class="ui-g ui-fluid ">
+            <div class="ui-g-12 ui-md-6 ui-lg-4 ">
+                <label for="name ">Task Name *</label>
+                <input id="name " type="text " pInputText formControlName="shortDescription">
+
+                <div class="ui-message ui-messages-error ui-corner-all " *ngIf="formTask.controls[ 'shortDescription'].hasError(
+    'required')&&formTask.controls[ 'shortDescription'].dirty ">
+                    <i class="fa fa-close "></i>
+                    Name is required
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-8 ">
+                <label for="comment ">Status</label>
+                <input id="comment " type="text" pInputText formControlName="status">
+            </div>
+        </div>
+
+        <div class="ui-g ui-fluid ">
+            <div class="ui-g-12 ui-md-6 ui-lg-4 ">
+                <label for="user">Assigned To</label>
+                <input id="user" type="text" pInputText formControlName="userAssigned">
+            </div>
+
+
+            <div class="ui-g-12 ui-md-6 ui-lg-4 ">
+                <label for="pri ">Priority *</label>
+                <p-dropdown id="priority" [options]="priorities " formControlName="priority"></p-dropdown>
+
+                <div class="ui-message ui-messages-error ui-corner-all " *ngIf="formTask.controls[ 'priority'].hasError(
+    'required')&&formTask.controls[ 'priority'].dirty ">
+                    <i class="fa fa-close "></i>
+                    Priority is required
+                </div>
+            </div>
+        </div>
+        <h3>Additional</h3>
+        <hr>
+        <div class="ui-g ui-fluid ">
+            <div class="ui-g-12 ui-md-12 ui-lg-4 ">
+                <label for="longDescription">Long Description *</label>
+                <textarea pInputTextarea id="longDescription" type="text " pInputText formControlName="longDescription"></textarea>
+
+                <div class="ui-message ui-messages-error ui-corner-all " *ngIf="formTask.controls[ 'longDescription'].hasError(
+    'required')&&formTask.controls[ 'longDescription'].dirty ">
+                    <i class="fa fa-close "></i>
+                    Long Description is required
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <h3>Notification</h3>
+        <hr>
+        <div class="ui-g ui-fluid ">
+            <div class="ui-g-12 ui-md-6 ui-lg-4 ">
+                <label for="notification">Is required email notification? </label>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 ">
+                <p-checkbox binary="true " formControlName="notification" (onChange)="onDisplayBillingAddress($event) "></p-checkbox>
+            </div>
+        </div>
+
+
+        <div class="ui-g ui-fluid ">
+
+            <div class="ui-g-12 ui-md-6 ui-lg-4 ">
+                <label for="email">Email Address</label>
+                <input id="email" type="text " pInputText formControlName="email" #emailAddress>
+
+                <div class="ui-message ui-messages-error ui-corner-all " *ngIf="emailAddress.errors?.email&&emailAddress.dirty ">
+                    <i class="fa fa-close "></i>
+                    Email is incorrect
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ui-g " *ngIf="selectedTaskId ">
+            <div class="ui-g-12 " style="border:solid 1px white ">
+                <div class="pull-right ">
+                    <!--p-confirmDialog></p-confirmDialog>
+                    <p-button class="ui-button-danger " (click)="onConfirmDeletion() " style="padding-left: 2em;
+                    " icon="pi pi-times " label="Delete "></p-button-->
+                    <p-button *ngIf="!formTask.dirty " class="ui-button-secondary " icon="fa fa-angle-left
+                    " label="Back " (click)="onBack() "></p-button>
+                    <p-button *ngIf="formTask.dirty " class="ui-button-secondary " icon="fa fa-angle-left " label="Cancel
+                    " (click)="onCancel() "></p-button>
+                    <p-button icon="fa fa-save " label="Save " [disabled]="!formTask.valid || !formTask.dirty
+                    " (click)="onSave() "></p-button>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui-g " *ngIf="!selectedTaskId ">
+            <div class="ui-g-12 " style="border:solid 1px white ">
+                <div class="pull-right ">
+                    <p-button *ngIf="!formTask.dirty " class="ui-button-secondary " icon="fa fa-angle-left
+                    " label="Back " (click)="onBack() "></p-button>
+                    <p-button *ngIf="formTask.dirty " class="ui-button-secondary " icon="fa fa-angle-left " label="Cancel
+                    " (click)="onCancel() "></p-button>
+                    <p-button icon="fa fa-save " label="Save " [disabled]="!formTask.valid " (click)="onAdd() "></p-button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</p-panel>

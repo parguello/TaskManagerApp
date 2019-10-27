@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CustomerModule } from './customers/customer.module';
+import { TaskModule } from './tasks/task.module';
 import { UserModule } from './users/user.module';
 import { SharedLayoutModule } from './shared/sharedLayout.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -16,7 +16,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    CustomerModule,
+    TaskModule,
     UserModule,
     SharedLayoutModule,
     AngularFontAwesomeModule
