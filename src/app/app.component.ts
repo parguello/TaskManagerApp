@@ -26,7 +26,7 @@ export class AppComponent {
       {
         label: 'Board',
         icon: 'pi pi-pw pi-list',
-        command: (event) => { this.router.navigate(['/view-board']); }
+        command: (event) => { this.router.navigate(['/board']); }
 
       },
       {

@@ -7,10 +7,12 @@ import { TaskModule } from './tasks/task.module';
 import { UserModule } from './users/user.module';
 import { SharedLayoutModule } from './shared/sharedLayout.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { BoardComponent } from './board/board.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule,
